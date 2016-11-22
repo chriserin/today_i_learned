@@ -7,6 +7,7 @@ defmodule TodayILearned.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+
   end
 
   pipeline :api do
@@ -16,7 +17,7 @@ defmodule TodayILearned.Router do
   scope "/", TodayILearned do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PostController, :index
+    resources "/", PostController, only: [:index, :show]
   end
 
   # Other scopes may use custom stacks.
